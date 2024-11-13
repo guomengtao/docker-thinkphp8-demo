@@ -1,0 +1,6 @@
+.git
+.gitignore
+*.md
+src/tp8/runtime/*
+src/tp8/vendor/*
+src/tp8/.env

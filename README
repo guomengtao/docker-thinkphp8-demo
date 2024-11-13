@@ -1,0 +1,54 @@
+ThinkPHP Docker 开发环境
+
+项目说明：
+这是一个基于 Docker 的 ThinkPHP 8 开发环境，包含了完整的开发环境配置。
+
+快速开始：
+1. 克隆项目
+   git clone git@github.com:guomengtao/docker-demo3.git
+   cd docker-demo3
+
+2. 启动项目
+   docker-compose up -d
+
+3. 访问项目
+   http://localhost:8084
+
+目录结构：
+- src/tp8/          ThinkPHP 源码目录
+- Dockerfile        Docker 镜像构建文件
+- docker-compose.yml  Docker 服务编排配置
+- README            项目说明文件
+
+环境要求：
+- Docker Desktop
+- Git
+
+常用命令：
+- 启动环境：docker-compose up -d
+- 查看日志：docker-compose logs -f
+- 停止环境：docker-compose down
+- 重新构建：docker-compose up -d --build
+
+开发说明：
+1. 源码位置：src/tp8/app/
+2. 配置文件：src/tp8/config/
+3. 公共目录：src/tp8/public/
+
+注意事项：
+1. 首次启动可能需要几分钟时间
+2. 确保 8084 端口未被占用
+3. 代码修改会立即生效，无需重启容器
+
+问题排查：
+1. 如果页面无法访问：
+   docker-compose logs -f
+
+2. 如果需要进入容器：
+   docker-compose exec web sh
+
+3. 如果需要重新安装依赖：
+   docker-compose exec web composer install -d /var/www/html/tp8
+
+维护者：
+guomengtao
