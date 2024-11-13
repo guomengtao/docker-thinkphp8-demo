@@ -1,11 +1,16 @@
-FROM php:8.2-fpm-alpine
+FROM php:8.1-fpm
 
-RUN apk add --no-cache \
-    git \
-    nginx \
-    && docker-php-ext-install pdo_mysql
+# 安装必要的 PHP 扩展
+RUN docker-php-ext-install pdo_mysql
 
-COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+# 安装 nginx
+RUN apt-get update && apt-get install -y nginx
 
-WORKDIR /var/www/html
-RUN composer create-project topthink/think tp8
+# 复制 nginx 配置
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+
+# 启动脚本
+COPY start.sh /start.sh
+RUN chmod +x /start.sh
+
+CMD ["/start.sh"]

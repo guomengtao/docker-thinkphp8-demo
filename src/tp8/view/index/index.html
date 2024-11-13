@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ThinkPHP 留言板</title>
+    <meta charset="utf-8">
+    <style>
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+        .message-form {
+            margin-bottom: 30px;
+            background: #f5f5f5;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        .message-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        .message-form button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+        .message-list {
+            margin-top: 20px;
+        }
+        .message-item {
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>发表留言</h2>
+        <!-- 使用普通表单提交 -->
+        <form class="message-form" method="post" action="{:url('index/submit')}">
+            <textarea name="content" rows="4" required></textarea>
+            <button type="submit">提交留言</button>
+        </form>
+
+        <div class="message-list">
+            <h2>留言列表</h2>
+            {volist name="messages" id="msg"}
+            <div class="message-item">
+                <div>{$msg.content}</div>
+                <div style="color: #999; font-size: 12px;">{$msg.created_at}</div>
+            </div>
+            {/volist}
+        </div>
+    </div>
+</body>
+</html> 
